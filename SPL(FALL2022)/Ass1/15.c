@@ -60,5 +60,6 @@ Task:
     else{
         printf("Wrong, %d Chance(s) Left!", chances);
         printf("\nPlayer-1 wins!");
+        return 0;
     }
 }
