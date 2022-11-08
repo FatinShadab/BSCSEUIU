@@ -1,3 +1,7 @@
+/*
+Init an array of size 10 where each element is an int having the value
+10. Then put 20 in the even indices and 30 in the odd indices.
+*/
 #include <stdio.h>
 
 int main(){
