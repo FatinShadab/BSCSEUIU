@@ -2,8 +2,8 @@
 > A workshop on competitive programming by [UIU CSE](https://cse.uiu.ac.bd/) department
 
 ## Class Topics
-* [Class : I    [26/10/22]](#class-i)
-* [Class : II   [11/11/22]](#class-ii)
+* [Class : I    [26/10/22]](#class--i)
+* [Class : II   [11/11/22]](#class--ii)
 
 
 ## Class : I
