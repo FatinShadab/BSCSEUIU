@@ -27,5 +27,5 @@
 - The pros and cons of [ios_base::sync_with_stdio(false);cin.tie(NULL);](https://www.geeksforgeeks.org/fast-io-for-competitive-programming/#:~:text=ios_base%3A%3Async_with_stdio(false)%3B,first%20input%20or%20output%20operation.)
 - What is [camel case](https://en.wikipedia.org/wiki/Camel_case)?
 - [auto keyword](https://www.geeksforgeeks.org/type-inference-in-c-auto-and-decltype/)
-- [Contest 1](https://vjudge.net/contest/532817#overview) password : ${varsity_name}-${program_name}-${season_number}-P1
+- [Contest 1](https://vjudge.net/contest/532817#overview) password : UIU-CP-12-P1
 - Intro to [Binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm) theory
