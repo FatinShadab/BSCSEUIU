@@ -4,7 +4,8 @@
 ## Class Topics
 * [Class : I    [26/10/22]](#class--i)
 * [Class : II   [11/11/22]](#class--ii)
-* [Class : III   [02/12/22]](#class--ii)
+* [Class : III  [02/12/22]](#class--iii)
+* [Class : IV   [09/12/22]](#class--iv)
 
 
 ## Class : I
@@ -29,3 +30,12 @@
 - [auto keyword](https://www.geeksforgeeks.org/type-inference-in-c-auto-and-decltype/)
 - [Contest 1](https://vjudge.net/contest/532817#overview) password : UIU-CP-12-P1
 - Intro to [Binary search](https://en.wikipedia.org/wiki/Binary_search_algorithm) theory
+
+## Class : IV
+- subsequence vs subarray
+- Passing by value, passing by reference explained
+- What is ['Time Complexity'](https://www.geeksforgeeks.org/understanding-time-complexity-simple-examples/)
+- Use of ['Prefix Sum'](https://www.geeksforgeeks.org/prefix-sum-array-implementation-applications-competitive-programming/)
+- [sort](https://www.geeksforgeeks.org/sort-c-stl/) and [reverse](https://www.geeksforgeeks.org/stdreverse-in-c/) function of ['algorithm.h'](https://cplusplus.com/reference/algorithm/) header file
+- [lambda functions in c++](https://learn.microsoft.com/en-us/cpp/cpp/lambda-expressions-in-cpp?view=msvc-170)
+- Implementation of ['Binary Search'](https://www.geeksforgeeks.org/binary-search/)
