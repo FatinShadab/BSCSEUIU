@@ -1,3 +1,17 @@
+/*
+Suppose, you have two structures called "Point" and "Circle". In the Point structure,
+there are two integer types of variables, "x_coord" and "y_coord". In the Circle structure,
+there are also two variables: one is "radius," which is of the float type, and another is "center,"
+which is of the point type. There are three methods. measureDistance(Point p1, Point p2) :
+It calculate the distance between two points and return that distance.
+move(Point *p, int dirX, int dirY): It moves the point according to the value of dirX and dirY.
+isInsideCircle(Circle c, Point p): It calculates if point p is inside the circle or not.
+Write a program that will give you the following output: Enter the coordinate of 1st Point:
+2 3 Enter the coordinate of 2nd Point: 4 -1 Enter Circle radius: 5 Point(x=2,y=3) Point(x=4,y=-1)
+Circle(raius=5.000000,Point(x=4,y=-1)) Distance between p1 and p2 is:4.472136 After moving p1:Point(x=1,y=4)
+Is p1 inside circle C? No 
+*/
+
 #include <stdio.h>
 #include <math.h>
 

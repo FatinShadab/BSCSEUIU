@@ -1,3 +1,19 @@
+/*
+Redesign the above structure such that, it handles for n-dimensional points. No need for circles here.
+You just need to implement measureDistance.
+
+	N will be given as input for every structure.
+
+	Example:
+	Point p1 N = 4: 100, 200, 0 ,300
+	Point p2 N = 4:  30, 50, 60, 70
+	measureDistance = sqrt( (100-30)^2 + (200-50)^2 + (0-60)^2 + (300-70)^2 )
+
+	Point p1 N = 3: 100, 200, 0 
+	Point p2 N = 4:  30, 50, 60, 70
+	measureDistance = Mismatched dimension
+*/
+
 #include <stdio.h>
 #include <math.h>
 
