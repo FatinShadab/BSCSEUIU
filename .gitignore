@@ -1,2 +1,6 @@
 *.exe
 .exe
+*.class
+.class
+*.java~
+.java~
