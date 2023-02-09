@@ -6,6 +6,8 @@
 * [Class : II   [11/11/22]](#class--ii)
 * [Class : III  [02/12/22]](#class--iii)
 * [Class : IV   [09/12/22]](#class--iv)
+* [Class : V    [20/01/23]](#class--v)
+* [Class : VI   [27/01/23]](#class--vi)
 
 
 ## Class : I
@@ -39,3 +41,14 @@
 - [sort](https://www.geeksforgeeks.org/sort-c-stl/) and [reverse](https://www.geeksforgeeks.org/stdreverse-in-c/) function of ['algorithm.h'](https://cplusplus.com/reference/algorithm/) header file
 - [lambda functions in c++](https://learn.microsoft.com/en-us/cpp/cpp/lambda-expressions-in-cpp?view=msvc-170)
 - Implementation of ['Binary Search'](https://www.geeksforgeeks.org/binary-search/)
+
+## Class : V
+- Recursion    (Part : I) Resource : [link1](http://zobayer.blogspot.com/2009/12/cse-102-practice-recursions.html) [link2](http://zobayer.blogspot.com/2009/12/cse-102-attacking-recursion.html)
+- Backtracking (Part : I)
+- [Contest](https://vjudge.net/contest/539470)
+
+## Class : VI
+- Number theory [(The sieve of Eratosthenes)](https://progkriya.org/gyan/basic-number-theory)
+- All prime divisors of a number using sieve
+- All prime numbers in a range using sieve
+- All divisors of a number using sieve
