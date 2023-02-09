@@ -42,6 +42,7 @@
 - [sort](https://www.geeksforgeeks.org/sort-c-stl/) and [reverse](https://www.geeksforgeeks.org/stdreverse-in-c/) function of ['algorithm.h'](https://cplusplus.com/reference/algorithm/) header file
 - [lambda functions in c++](https://learn.microsoft.com/en-us/cpp/cpp/lambda-expressions-in-cpp?view=msvc-170)
 - Implementation of ['Binary Search'](https://www.geeksforgeeks.org/binary-search/)
+- [contest 2](https://vjudge.net/contest/535620#overview)
 
 ## Class : V
 - Recursion    (Part : I) Resource : [link1](http://zobayer.blogspot.com/2009/12/cse-102-practice-recursions.html) [link2](http://zobayer.blogspot.com/2009/12/cse-102-attacking-recursion.html)
