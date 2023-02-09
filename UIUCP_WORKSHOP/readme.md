@@ -2,13 +2,14 @@
 > A workshop on competitive programming by [UIU CSE](https://cse.uiu.ac.bd/) department
 
 ## Class Topics
-* [Class : I    [26/10/22]](#class--i)
-* [Class : II   [11/11/22]](#class--ii)
-* [Class : III  [02/12/22]](#class--iii)
-* [Class : IV   [09/12/22]](#class--iv)
-* [Class : V    [20/01/23]](#class--v)
-* [Class : VI   [27/01/23]](#class--vi)
-
+* [Class : I       [26/10/22]](#class--i)
+* [Class : II      [11/11/22]](#class--ii)
+* [Class : III     [02/12/22]](#class--iii)
+* [Class : IV      [09/12/22]](#class--iv)
+* [Class : V       [20/01/23]](#class--v)
+* [Class : VI      [27/01/23]](#class--vi)
+* [Extra Classes   [--/--/--]](#extra-classes)
+* [Extra Resources [--/--/--]](#extra-resources)
 
 ## Class : I
 - Introduction to competitive programming
@@ -52,3 +53,10 @@
 - All prime divisors of a number using sieve
 - All prime numbers in a range using sieve
 - All divisors of a number using sieve
+
+## Extra Classes
+- Introduction to graphs
+- Introduction to [LCA] (https://www.hackerrank.com/topics/lowest-common-ancestor#:~:text=In%20Graph%20Theory%20and%20Computer,be%20a%20descendant%20of%20itself%20.)
+
+## Extra Resources
+- [Bangladesh Advanced Computing Society - BACS](https://www.youtube.com/@b.a.c.s/playlists)
