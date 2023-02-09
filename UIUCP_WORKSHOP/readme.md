@@ -56,7 +56,7 @@
 
 ## Extra Classes
 - Introduction to graphs
-- Introduction to [LCA] (https://www.hackerrank.com/topics/lowest-common-ancestor#:~:text=In%20Graph%20Theory%20and%20Computer,be%20a%20descendant%20of%20itself%20.)
+- Introduction to [LCA](https://cp-algorithms.com/graph/lca.html)
 
 ## Extra Resources
 - [Bangladesh Advanced Computing Society - BACS](https://www.youtube.com/@b.a.c.s/playlists)
