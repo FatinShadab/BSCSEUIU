@@ -30,7 +30,7 @@ public class Point {
         this.y = y;
     }
     
-    public double gettX(){
+    public double getX(){
         return this.x;
     }
     
@@ -39,6 +39,6 @@ public class Point {
     }
     
     public double getDistance(Point p){
-        return Math.pow((Math.pow((this.x - p.x), 2) + Math.pow((this.y - p.y), 2)), 1/2);
+        return Math.pow((Math.pow((this.x - p.getX()), 2) + Math.pow((this.y - p.getY()), 2)), 1/2);
     }
 }

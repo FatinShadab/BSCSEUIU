@@ -21,10 +21,10 @@ public class RectAngle {
         this.points[0] = p1;
         this.points[1] = p2;
         this.points[2] = p3;
-        this.points[3] = new Point(p1.gettX(), p3.getY());
+        this.points[3] = new Point(p1.getX(), p3.getY());
     }
     
     public boolean inside (Point p){
-        return (p.gettX() >= this.points[0].gettX() && p.gettX() <= this.points[1].gettX()) && (p.getY() >= this.points[0].getY() && p.getY() <= this.points[3].getY());
+        return (p.getX() >= this.points[0].getX() && p.getX() <= this.points[1].getX()) && (p.getY() >= this.points[0].getY() && p.getY() <= this.points[3].getY());
     }
 }
