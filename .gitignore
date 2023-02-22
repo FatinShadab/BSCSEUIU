@@ -4,3 +4,5 @@
 .class
 *.java~
 .java~
+.out
+*.out
