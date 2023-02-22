@@ -8,6 +8,7 @@
 * [Class : IV      [09/12/22]](#class--iv)
 * [Class : V       [20/01/23]](#class--v)
 * [Class : VI      [27/01/23]](#class--vi)
+* [Class : VII     [17/02/23]](#class--vii)
 * [Extra Classes   [--/--/--]](#extra-classes)
 * [Extra Resources [--/--/--]](#extra-resources)
 
@@ -54,6 +55,10 @@
 - All prime divisors of a number using sieve
 - All prime numbers in a range using sieve
 - All divisors of a number using sieve
+
+## Class : VII
+- Recursion    (Part : II)
+- Intro to [DP](https://codeforces.com/blog/entry/43256)
 
 ## Extra Classes
 - Introduction to graphs
