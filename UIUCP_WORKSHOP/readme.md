@@ -62,10 +62,9 @@
 - Intro to [DP](https://codeforces.com/blog/entry/43256)
 
 ## Class : VIII
-- Coin Chnage Problem (DP)
+- [Coin Chnage Problem (DP)](https://github.com/FatinShadab/BSCSEUIU/blob/main/UIUCP_WORKSHOP/class_work/coinChange.cpp)
 - Rod Cutting Problem
-- Comparator in CPP
-- [Class Materials](https://github.com/FatinShadab/BSCSEUIU/commit/28c46588d3b7d5c2329f56f8326b48133239f1b6)
+- [Comparator in CPP](https://github.com/FatinShadab/BSCSEUIU/blob/main/UIUCP_WORKSHOP/class_work/comparator.cpp)
 
 ## Extra Classes
 - Introduction to graphs
