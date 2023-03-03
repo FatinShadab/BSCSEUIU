@@ -63,6 +63,7 @@
 
 ## Class : VIII
 - Coin Chnage Problem (DP)
+- Rod Cutting Problem
 - Comparator in CPP
 - [Class Materials](https://github.com/FatinShadab/BSCSEUIU/commit/28c46588d3b7d5c2329f56f8326b48133239f1b6)
 
