@@ -9,6 +9,7 @@
 * [Class : V       [20/01/23]](#class--v)
 * [Class : VI      [27/01/23]](#class--vi)
 * [Class : VII     [17/02/23]](#class--vii)
+* [Class : VIII    [03/03/23]](#class--viii)
 * [Extra Classes   [--/--/--]](#extra-classes)
 * [Extra Resources [--/--/--]](#extra-resources)
 
@@ -59,6 +60,11 @@
 ## Class : VII
 - Recursion    (Part : II)
 - Intro to [DP](https://codeforces.com/blog/entry/43256)
+
+## Class : VIII
+- Coin Chnage Problem (DP)
+- Comparator in CPP
+- [Class Materials](https://github.com/FatinShadab/BSCSEUIU/commit/28c46588d3b7d5c2329f56f8326b48133239f1b6)
 
 ## Extra Classes
 - Introduction to graphs
