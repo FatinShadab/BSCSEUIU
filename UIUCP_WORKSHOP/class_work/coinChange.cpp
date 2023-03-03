@@ -23,26 +23,6 @@ int coinChange(int amount, int coins[], int n)
     return cache[amount];
 }
 
-int coinChangeAllPossibleDP(int amount, int coins[], int i, int n)
-{
-
-    if(cache[amount]!=-1) return cache[amount];
-
-    if(amount==0) return 0;
-    if(i==n) return INF;
-
-    if(coins[i]<=amount)
-    {
-        int branch1 = 1 + coinChangeAllPossibleDP(amount-coins[i], coins, i, n);
-        int branch2 = coinChangeAllPossibleDP(amount, coins, i+1, n);
-        return cache[amount] = min(branch1, branch2);
-    }
-    else
-        return cache[amount] = coinChangeAllPossibleDP(amount, coins, i+1, n);
-}
-
-
-
 int coinChangeAllPossible(int amount, int coins[], int i, int n)
 {
     if(amount==0) return 0;
@@ -77,6 +57,7 @@ int coinChangeGreedy(int amount, int coins[], int n)
     return amountOfCoins;
 
 }
+
 int main()
 {
     int coins[4] = {357,239,73,52};
@@ -88,13 +69,9 @@ int main()
 
     memset(cache, -1, sizeof(cache));
     cache[0] = 0;
+    
     cout << coinChange(amount, coins, 4) << endl;
 
-
-
-    //cout << coinChangeAllPossibleDP(amount, coins, 0, 4) << endl;
-
-    cout << coinChangeAllPossible(amount, coins, 0, 4) << endl;
     return 0;
 
 }
