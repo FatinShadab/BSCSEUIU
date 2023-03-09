@@ -5,15 +5,12 @@
     in the knapsack so you will have to choose. For each item you are given its size and its value.
     You want to maximize the total value of all the items you are going to bring. What is this
     maximum total value?
-
     Input
     On the first line you are given S and N. N lines follow with two integers on each line describing
     one of your items. The first number is the size of the item and the next is the value of the item.
-
     Output
     You should output a single integer on one like - the total maximum value from the best choice of 
     items for your trip.
-
     Example
         Input:     Output:
         4 5         13
@@ -96,19 +93,19 @@ int knapsackDpSolve(int capacity, int itemIdx){
     int itemValue = items[itemIdx].second;
     int itemSize  = items[itemIdx].first; 
 
-    if (CACHE[itemSize][itemIdx] != -1){ // checks if we already calculated the value
-        return CACHE[itemSize][itemIdx];
+    if (CACHE[capacity][itemIdx] != -1){ // checks if we already calculated the value
+        return CACHE[capacity][itemIdx];
     }
 
     if (itemSize <= capacity){
         int ifTake = itemValue + knapsackDpSolve(capacity-itemSize, itemIdx+1);
         int ifIgnore = knapsackDpSolve(capacity, itemIdx+1);
 
-        return CACHE[itemSize][itemIdx] = max(ifTake, ifIgnore);
+        return CACHE[capacity][itemIdx] = max(ifTake, ifIgnore);
     }
 
     else{
-        return CACHE[itemSize][itemIdx] = knapsackDpSolve(capacity, itemIdx+1);
+        return CACHE[capacity][itemIdx] = knapsackDpSolve(capacity, itemIdx+1);
     }
 }
 
