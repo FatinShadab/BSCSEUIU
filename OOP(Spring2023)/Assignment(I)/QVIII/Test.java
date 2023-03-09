@@ -10,6 +10,13 @@ class Book{
 }
 
 class PaperBackBook extends Book{
+    // added to provide the desire output
+    @Override
+    void description(){
+        System.out.println("Paperback books are good for your eyes!");
+    }
+
+    @Override
     void putPageMarker(int pageNo){
         System.out.println("Page marker was " + 
         "put on page no: " + pageNo);
@@ -27,6 +34,6 @@ public class Test{
         book1.description();
         book2.description();
         // need to pass a int to avoid error
-        book2.putPageMarker(10);
+        book2.putPageMarker(50);
     }
 }
