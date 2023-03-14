@@ -27,6 +27,13 @@ code).
 Tasks:
     i. What is the reason for this error? Modify the Person class without changing the access
         modifier so that we can access the id and name from the Test class.
+        [
+            The reason for the error is that the id and name instance variables of the Person class 
+            are declared with the default access modifier, which means they are only accessible within the same package.
+
+            To access the id and name from the Test class, we need to either change the access modifier of 
+            the instance variables to public or provide public getter and setter methods.
+        ]
 
     ii. Suppose you want to measure BMI for a Person “p1” from another class in the same file.
         Formula to calculate BMI is:
@@ -40,6 +47,7 @@ Tasks:
 */
 
 class Person{
+    // for this example we are setting the modifiers to private
     private double id, height, weight;
     private String name;
 
