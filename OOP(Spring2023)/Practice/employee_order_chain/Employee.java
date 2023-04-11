@@ -10,8 +10,9 @@ public class Employee implements Comparable<Employee>{
     }
     
     public int compareTo(Employee other){
-      // returns 1  : if self is < other
-      // returns -1 : if self is > other
+      // the sort function asks if self is greater then other ?
+      // returns -1  : if self is < other
+      // returns 1 : if self is > other
       // returns 0 : if self is == other
       
       if (this.position_level < other.position_level){
