@@ -25,8 +25,13 @@ class Student{
     }
 
     // i
-    public boolean equals(Student other){
-        return this.name.equals(other.name);
+    @Override
+    public boolean equals(Object other){
+        if (!(other instanceof Student)) {
+            return false;
+        }
+        Student otherStudent = (Student) other;
+        return this.name.equals(otherStudent.name);
     }
 
     public String toString(){
