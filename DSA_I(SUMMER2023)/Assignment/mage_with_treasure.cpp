@@ -62,7 +62,69 @@ int dX[] = {0, 0, -1, 1};
 int dY[] = {-1, 1, 0, 0};
 
 stack <pair<int, int>> pathStack;
+char header[150];
 
+void printMaze(int current_cell_i, int current_cell_j) {
+    // clear for linux
+    system("clear");
+    
+    // cls for windows
+    //system("cls");
+    printf("*** %s\n\n", header);
+    printf("|");
+    for (int i = 0; i < n; i++){
+        printf("===");
+    }
+    printf("|\n");
+
+    for (int i = 0; i < n; i++) {
+        printf("|");
+        for (int j = 0; j < n; j++) {
+            if (i == current_cell_i && j == current_cell_j) {
+                printf(" X ");
+            } else {
+                if (visited[i][j]){
+                    if (maze[i][j] == 3){
+                        printf(" ! ");
+                        continue;
+                    }
+                    if (maze[i][j] == 2){
+                        printf(" E ");
+                        continue;
+                    }
+                    printf(" * ");
+                    continue;
+                }
+
+                switch (maze[i][j]) {
+                    case 0:
+                        printf(" . ");
+                        break;
+                    case 1:
+                        printf(" # ");
+                        break;
+                    case 2:
+                        printf(" E ");
+                        break;
+                    case 3:
+                        printf(" T ");
+                        break;
+                    default:
+                        printf(" ? ");
+                        break;
+                }
+            }
+        }
+        printf("|\n");
+    }
+
+    printf("|");
+    for (int i = 0; i < n; i++){
+        printf("===");
+    }
+    printf("|\n");
+
+}
 
 void resetVisited(){
     for (int i=0; i < n; i++){
@@ -74,11 +136,9 @@ void resetVisited(){
     return;
 }
 
-
 bool valid_path(int block[]){
     return ((block[0] >= 0 && block[0] < n) && (block[1] >= 0 && block[1] < n) && maze[block[0]][block[1]] != 1);
 }
-
 
 bool valid_maze(){
     if (startLoc[0] == -1 && startLoc[1] == -1) return false;
@@ -87,7 +147,6 @@ bool valid_maze(){
 
     return true;
 }
-
 
 void printStackPath(bool intermediate){
     while (!pathStack.empty()){
@@ -107,19 +166,27 @@ void printStackPath(bool intermediate){
 }
 
 /* ------------------ using dfs -------------------- */
-void dfs(int src[], int dst[], int initSrc[]){
+void dfs(int src[], int dst[], int initSrc[], bool simulate){
     visited[src[0]][src[1]] = true;
 
+    if (simulate){
+        printMaze(src[0], src[1]);
+        printf("\n enter to continue ...");
+        getchar();
+    }
+
     if (src[0] == dst[0] && src[1] == dst[1]){
-        pair<int, int> block = make_pair(dst[0], dst[1]);
+        if (!simulate){
+            pair<int, int> block = make_pair(dst[0], dst[1]);
 
-        while (!(block.first == initSrc[0] && block.second == initSrc[1])){
-            pathStack.push(block);
-            
-            block = parent[block.first][block.second];
+            while (!(block.first == initSrc[0] && block.second == initSrc[1])){
+                pathStack.push(block);
+                
+                block = parent[block.first][block.second];
+            }
+
+            pathStack.push(make_pair(initSrc[0], initSrc[1]));
         }
-
-        pathStack.push(make_pair(initSrc[0], initSrc[1]));
 
         return;
     }
@@ -129,13 +196,16 @@ void dfs(int src[], int dst[], int initSrc[]){
         
         if (valid_path(nextBlock) && !visited[nextBlock[0]][nextBlock[1]]){
             parent[nextBlock[0]][nextBlock[1]] = make_pair(src[0], src[1]);
-            dfs(nextBlock, dst, initSrc);
+            dfs(nextBlock, dst, initSrc, simulate);
+
+            if (visited[dst[0]][dst[1]]){
+                return;
+            }
         }
     }
 
     return;
 }
-
 
 void find_paths_with_treasure_dfs(){
 
@@ -144,18 +214,18 @@ void find_paths_with_treasure_dfs(){
         return;
     }
 
-    dfs(startLoc, treasureLoc, startLoc);
+    dfs(startLoc, treasureLoc, startLoc, false);
 
     if (!visited[treasureLoc[0]][treasureLoc[1]]){
         printf("No path with treasure found.\n");
         return;     
     }
 
-    //pathStack.push(make_pair(startLoc[0], startLoc[1]));
+    printf("Path with treasure: \n\t");
     printStackPath(true);
 
     resetVisited();
-    dfs(treasureLoc, exitLoc, treasureLoc);
+    dfs(treasureLoc, exitLoc, treasureLoc, false);
 
     if (!visited[exitLoc[0]][exitLoc[1]]){
         printf("No path with treasure found.\n");
@@ -171,7 +241,7 @@ void find_paths_with_treasure_dfs(){
 
 
 /* ------------------ using bfs -------------------- */
-void bfs(int src[], int dst[]){
+void bfs(int src[], int dst[], bool simulate){
     queue <pair<int, int>> container;
 
     container.push(make_pair(src[0], src[1]));
@@ -181,8 +251,10 @@ void bfs(int src[], int dst[]){
         pair<int, int> block = container.front();
         container.pop();
 
-        if (block.first == dst[0] && block.second == dst[1]){
-            break;
+        if (simulate){
+            printMaze(block.first, block.second);
+            printf("\n enter to continue ...");
+            getchar();
         }
 
         for (int i = 0; i < 4; i++){
@@ -192,11 +264,30 @@ void bfs(int src[], int dst[]){
                 visited[nextBlock[0]][nextBlock[1]] = true;
                 container.push(make_pair(nextBlock[0], nextBlock[1]));
                 parent[nextBlock[0]][nextBlock[1]] = make_pair(block.first, block.second);
+
+                if (visited[dst[0]][dst[1]]){
+                    while (!container.empty()){
+                        container.pop();
+                    }
+                    break;
+                }
             }
+        }
+
+        if (simulate){
+            printMaze(block.first, block.second);
+            printf("\n enter to continue ...");
+            getchar();
         }
     }
 
-    if (visited[dst[0]][dst[1]]){
+    if (visited[dst[0]][dst[1]] && simulate){
+        printMaze(dst[0], dst[1]);
+        printf("\n enter to continue ...");
+        getchar();
+    }
+
+    if (visited[dst[0]][dst[1]] && !simulate){
         pair<int, int> block = make_pair(dst[0], dst[1]);
 
         while (!(block.first == src[0] && block.second == src[1])){
@@ -218,17 +309,18 @@ void find_paths_with_treasure_bfs(){
         return;
     }
 
-    bfs(startLoc, treasureLoc);
+    bfs(startLoc, treasureLoc, false);
 
     if (!visited[treasureLoc[0]][treasureLoc[1]]){
         printf("No path with treasure found.\n");
         return;     
     }
 
+    printf("Path with treasure: \n\t");
     printStackPath(true);
 
     resetVisited();
-    bfs(treasureLoc, exitLoc);
+    bfs(treasureLoc, exitLoc, false);
 
     if (!visited[exitLoc[0]][exitLoc[1]]){
         printf("No path with treasure found.\n");
@@ -237,6 +329,26 @@ void find_paths_with_treasure_bfs(){
 
     pathStack.pop();
     printStackPath(false);
+
+    return;
+}
+/* ------------------ using bfs -------------------- */
+
+void simulation(int withDFS){
+
+    if (withDFS){
+        strcpy(header, "Finding the treasure from the start location (using DFS):");
+        dfs(startLoc, treasureLoc, startLoc, true);
+        resetVisited();
+        strcpy(header, "Finding the exit from the treasure location (using DFS):");
+        dfs(treasureLoc, exitLoc, treasureLoc, true);
+    } else {
+        strcpy(header, "Finding the treasure from the start location (using BFS):");
+        bfs(startLoc, treasureLoc, true);
+        resetVisited();
+        strcpy(header, "Finding the exit from the treasure location (using BFS):");
+        bfs(treasureLoc, exitLoc, true);
+    }
 
     return;
 }
@@ -256,6 +368,10 @@ int main(){
             scanf("%d", &maze[i][j]);
 
             switch (maze[i][j]){
+                case 0:
+                    case 1:
+                        break;
+
                 case 2:
                     exitLoc[0] = i;
                     exitLoc[1] = j;
@@ -265,6 +381,9 @@ int main(){
                     treasureLoc[0] = i;
                     treasureLoc[1] = j;
                     break;
+
+                default:
+                    maze[i][j] = 0;
             }
         }
     }
@@ -280,26 +399,40 @@ int main(){
 
     USERSELECTION:
         int user_selection = -1;
+        int show_simulation = 0;
 
         printf("\nEnter 1 to use bfs and 0 to use dfs (1/0): ");
         scanf("%d", &user_selection);
+        printf("Show simulation ? (0/1) : ");
+        scanf("%d", &show_simulation);
+        getchar();
 
         
         switch (user_selection){
             case 0:
+                if (!(show_simulation == 0)){
+                    simulation(1);
+                    resetVisited();
+                }
+
                 find_paths_with_treasure_dfs();
+
                 break;
 
             case 1:
+                if(!(show_simulation == 0)){
+                    simulation(0);
+                    resetVisited();
+                }
+
                 find_paths_with_treasure_bfs();
+
                 break;
 
             default:
                 printf("Invalid Option !\n");
                 goto USERSELECTION;
         }
-    
-    
-
+        
     return 0;
 }
