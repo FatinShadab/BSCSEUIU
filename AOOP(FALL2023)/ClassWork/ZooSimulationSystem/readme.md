@@ -2,11 +2,11 @@
 ---
 ## Index
 
-- [Background] (#background)
-- [Requirements] (#requirements)
-- [Tasks] (#tasks)
-- [How To Run] (#how-to-run)
-- [Pictures] (#pictures)
+* [Background](#background)
+* [Requirements](#requirements)
+* [Tasks](#tasks)
+* [How To Run](#how-to-run)
+* [Pictures](#pictures)
 ---
 ## Background:
 ---
@@ -73,22 +73,28 @@ java bin.Zoo
 ## Pictures
 
 > Home Page : Selection Menu
-<img src="/repository/assets/employee.png" alt="Employee data" title="Employee Data title">
+<img src="https://github.com/FatinShadab/BSCSEUIU/blob/main/AOOP(FALL2023)/ClassWork/ZooSimulationSystem/images/home.png" alt="Home window">
 
 > Adding Zone
-<img src="/repository/assets/employee.png" alt="Employee data" title="Employee Data title">
+<img src="https://github.com/FatinShadab/BSCSEUIU/blob/main/AOOP(FALL2023)/ClassWork/ZooSimulationSystem/images/adding_zone.png" alt="Zone adding window">
 
 > Notification In Selection Menu
-<img src="/repository/assets/employee.png" alt="Employee data" title="Employee Data title">
+<img src="https://github.com/FatinShadab/BSCSEUIU/blob/main/AOOP(FALL2023)/ClassWork/ZooSimulationSystem/images/notification.png" alt="Notification System">
 
 > Adding Animals
-<img src="/repository/assets/employee.png" alt="Employee data" title="Employee Data title">
+<img src="https://github.com/FatinShadab/BSCSEUIU/blob/main/AOOP(FALL2023)/ClassWork/ZooSimulationSystem/images/adding_animals.png" alt="Animal window">
 
 > Adding Zookeepers
-<img src="/repository/assets/employee.png" alt="Employee data" title="Employee Data title">
+<img src="https://github.com/FatinShadab/BSCSEUIU/blob/main/AOOP(FALL2023)/ClassWork/ZooSimulationSystem/images/adding_zookeper.png" alt="Zookeepers Window">
 
 > Adding Visitors
-<img src="/repository/assets/employee.png" alt="Employee data" title="Employee Data title">
+<img src="https://github.com/FatinShadab/BSCSEUIU/blob/main/AOOP(FALL2023)/ClassWork/ZooSimulationSystem/images/adding_visitors.png" alt="Visitors window">
 
 > Simulation
-<img src="/repository/assets/employee.png" alt="Employee data" title="Employee Data title">
+<img src="https://github.com/FatinShadab/BSCSEUIU/blob/main/AOOP(FALL2023)/ClassWork/ZooSimulationSystem/images/simulation.png" alt="simulation png">
+
+<img src="https://github.com/FatinShadab/BSCSEUIU/blob/main/AOOP(FALL2023)/ClassWork/ZooSimulationSystem/images/zookeeper_simulation.png" alt="simulation 2">
+
+<img src="https://github.com/FatinShadab/BSCSEUIU/blob/main/AOOP(FALL2023)/ClassWork/ZooSimulationSystem/images/simulation_visitor_1.png" alt="simulation 3">
+
+<img src="https://github.com/FatinShadab/BSCSEUIU/blob/main/AOOP(FALL2023)/ClassWork/ZooSimulationSystem/images/simulation_visitor_2.png" alt="simulation 4">
