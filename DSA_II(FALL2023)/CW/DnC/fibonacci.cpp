@@ -6,8 +6,8 @@ is the sum of the two preceding ones.
 	if the value of the 0'th term is    ->   0
 	and the value of the 1'th term is   ->   1
 	then the value of the 2'th term is  -> value of 0'th term + value of 1'th term
-										->   (0 + 1)
-										->   1
+					    ->   (0 + 1)
+					    ->   1
 
 	So, we can formulate that, for the value of n'th term, 
 
@@ -16,25 +16,25 @@ is the sum of the two preceding ones.
 	Resulting a series like below,
 
 [~] Fibonacci:	0, 1, 1, 2, 3, 5, 8, 13, 21
-				^  ^  ^  ^  ^  ^  ^  ^   ^
-				|  |  |  |  |  |  |  |   |
+		^  ^  ^  ^  ^  ^  ^  ^   ^
+		|  |  |  |  |  |  |  |   |
 0'th term ->	0  |  |  |  |  |  |  |   |
-				   |  |  |  |  |  |  |   |
+		   |  |  |  |  |  |  |   |
 1'th term ->	   1  |  |  |  |  |  |   |
-				      |  |  |  |  |  |   |
+		      |  |  |  |  |  |   |
 2'th term ->	    (0+1)|  |  |  |  |   |
-						 |  |  |  |  |   |
-3'th term ->		   (1+1)|  |  |  |   |
-					        |  |  |  |   |
-4'th term ->			  (1+2)|  |  |   |
-						       |  |  |   |
+			 |  |  |  |  |   |
+3'th term ->	       (1+1)|  |  |  |   |
+			    |  |  |  |   |
+4'th term ->	          (1+2)|  |  |   |
+			       |  |  |   |
 5'th term ->                 (2+3)|  |   |
-							 	  |  |   |
-6'th term ->					(3+5)|   |
-									 |   |
-7'th term ->					   (5+8) |
-								         |
-8'th term ->						   (8+13)
+			 	  |  |   |
+6'th term ->			(3+5)|   |
+			             |   |
+7'th term ->			   (5+8) |
+				         |
+8'th term ->			       (8+13)
 
 [~] Now if we observe the formula and the simulation for the problem of
 calculating the value of n'th term of fibonacci series, we can notice that,
