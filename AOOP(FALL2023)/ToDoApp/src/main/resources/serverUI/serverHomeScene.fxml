@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.effect.InnerShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1080.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.todoapp.controller.server.ServerHomeSceneController">
+   <children>
+      <TextArea fx:id="logsTextArea" layoutX="37.0" layoutY="180.0" prefHeight="446.0" prefWidth="990.0">
+         <font>
+            <Font name="Monospaced Bold" size="20.0" />
+         </font></TextArea>
+      <Button fx:id="startButton" layoutX="912.0" layoutY="14.0" mnemonicParsing="false" onMouseClicked="#onStartButtonClicked" prefHeight="46.0" prefWidth="114.0" text="Start">
+         <font>
+            <Font name="MS Gothic" size="26.0" />
+         </font>
+      </Button>
+      <Button fx:id="stopButton" layoutX="912.0" layoutY="65.0" mnemonicParsing="false" onMouseClicked="#onStopButtonClicked" text=" Stop ">
+         <font>
+            <Font name="MS Gothic" size="26.0" />
+         </font>
+      </Button>
+      <Label layoutX="37.0" layoutY="88.0" prefHeight="27.0" prefWidth="289.0" text="https://locall.host/8080">
+         <font>
+            <Font name="MS Gothic" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="37.0" layoutY="14.0" prefHeight="62.0" prefWidth="310.0" text="Do.It SERVER">
+         <font>
+            <Font name="MS Gothic" size="48.0" />
+         </font>
+      </Label>
+      <Label layoutX="38.0" layoutY="146.0" text="Server Logs">
+         <font>
+            <Font name="MS Gothic" size="24.0" />
+         </font>
+      </Label>
+      <Button layoutX="913.0" layoutY="142.0" mnemonicParsing="false" prefHeight="34.0" prefWidth="114.0" text="save logs" onMouseClicked="#onSaveLogButtonClicked">
+         <font>
+            <Font name="MS Gothic" size="18.0" />
+         </font>
+      </Button>
+      <Pane fx:id="internalServerErrorPane" layoutX="165.0" layoutY="141.0" prefHeight="200.0" prefWidth="750.0" style="-fx-background-color: white;">
+         <children>
+            <Button layoutX="330.0" layoutY="100.0" mnemonicParsing="false" onMouseClicked="#onServerErrorOkButtonClicked" text="OK !">
+               <font>
+                  <Font name="Monospaced Bold" size="24.0" />
+               </font>
+            </Button>
+            <Label layoutX="136.0" layoutY="36.0" prefHeight="44.0" prefWidth="502.0" text="Internal Server Error !" textFill="#f20000">
+               <font>
+                  <Font name="Monospaced Bold" size="36.0" />
+               </font>
+            </Label>
+         </children>
+         <effect>
+            <InnerShadow />
+         </effect>
+      </Pane>
+   </children>
+</AnchorPane>
