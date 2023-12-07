@@ -45,6 +45,7 @@ public class ServerHomeSceneController implements Initializable {
         try {
             Server.stopListening();
             startButton.setDisable(false);
+            stopButton.setDisable(true);
         } catch (Throwable throwable) {
             System.out.println("[!] Exception : " + throwable.toString());
             for (StackTraceElement t : throwable.getStackTrace()) {
