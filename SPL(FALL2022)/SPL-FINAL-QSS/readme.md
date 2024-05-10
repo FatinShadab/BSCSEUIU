@@ -8,5 +8,5 @@
 * Structure       - Q3              - 8 marks
 * Pointer         - Q4[a, b]        - 8 marks
 
-### Solved Question -> [click here]()
+### Solved Question -> [click here](https://github.com/FatinShadab/BSCSEUIU/tree/main/SPL(FALL2022)/SPL-FINAL-QSS/question)
 ### Slide Link -> [click here](https://docs.google.com/presentation/d/1d4g-dArl_rYZmKYXNPcZxbCos6Fhk2CuoxRD-9G2eRg/edit?usp=sharing)
