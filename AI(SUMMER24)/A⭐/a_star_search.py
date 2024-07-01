@@ -1,3 +1,4 @@
+import math
 import heapq
 import pprint
 import random
@@ -67,7 +68,8 @@ class ASTAR:
         self.__visited = []
 
         self.__heuristic_func = {
-            "eu": self.__eu_heuristic
+            "euclidean": self.__euclidean_heuristic,
+            "manhattan": self.__manhattan_heuristic
         }
         self.dir = {
             "up": (-1, 0),
@@ -117,10 +119,21 @@ class ASTAR:
         """
         return x == dest[0] and y == dest[1]
     
-    def __eu_heuristic(self, x, y, dest):
+    def __euclidean_heuristic(self, x, y, dest):
         """
-        Calculate the Euclidean heuristic (Manhattan distance) from a position to the destination.
+        Calculate the heuristic (Euclidean distance) from (x, y) to the destination.
+        
+        :param x: X-coordinate.
+        :param y: Y-coordinate.
+        :param dest: Destination coordinates.
+        :return: The heuristic value.
+        """
+        return math.sqrt((x - dest[0]) ** 2 + (y - dest[1]) ** 2)
 
+    def __manhattan_heuristic(self, x, y, dest):
+        """
+        Calculate the heuristic (Manhattan distance) from (x, y) to the destination.
+        
         :param x: X-coordinate.
         :param y: Y-coordinate.
         :param dest: Destination coordinates.
@@ -143,7 +156,7 @@ class ASTAR:
         path.append((current.x, current.y))
         return path[::-1]
 
-    def search_unw_grid(self, grid, src, dest, tree_mode=False, heuristic="eu"):
+    def search_unw_grid(self, grid, src, dest, tree_mode=False, heuristic="euclidean"):
         """
         Perform A* search on an unweighted grid.
 
