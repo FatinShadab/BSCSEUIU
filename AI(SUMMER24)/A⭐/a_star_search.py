@@ -5,6 +5,14 @@ import random
 class ASTAR:
     class Node:
         def __init__(self, x=0, y=0, w=float('inf'), heuristic=0):
+            """
+            Initialize a new node.
+
+            :param x: X-coordinate of the node.
+            :param y: Y-coordinate of the node.
+            :param w: Weight (g-value) of the node.
+            :param heuristic: Heuristic (h-value) of the node.
+            """
             self.parent = None
             self.x = x
             self.y = y
@@ -13,21 +21,47 @@ class ASTAR:
             self.f = self.w + self.heuristic
 
         def set_parent(self, parent):
+            """
+            Set the parent of the node.
+
+            :param parent: Parent node.
+            """
             self.parent = parent
 
         def set_xy(self, x, y):
+            """
+            Set the coordinates of the node.
+
+            :param x: X-coordinate.
+            :param y: Y-coordinate.
+            """
             self.x = x
             self.y = y
 
         def set_params(self, w, heuristic):
+            """
+            Set the parameters of the node.
+
+            :param w: Weight (g-value) of the node.
+            :param heuristic: Heuristic (h-value) of the node.
+            """
             self.w = w
             self.heuristic = heuristic
             self.f = self.w + self.heuristic
 
         def __lt__(self, other):
+            """
+            Less-than comparison based on f-value.
+
+            :param other: Another node.
+            :return: True if this node's f-value is less than the other's, False otherwise.
+            """
             return self.f < other.f
         
     def __init__(self):
+        """
+        Initialize the A* solver with empty structures.
+        """
         self.__frontier = []
         self.__node_details = []
         self.__visited = []
@@ -43,23 +77,64 @@ class ASTAR:
         }
 
     def __reset(self):
+        """
+        Reset the solver's internal structures for a new search.
+        """
         self.__frontier = []
         self.__node_details = []
         self.__visited = []
 
     def __is_valid(self, x, y, grid):
+        """
+        Check if a position is within the grid bounds and not an obstacle.
+
+        :param x: X-coordinate.
+        :param y: Y-coordinate.
+        :param grid: The grid.
+        :return: True if the position is valid, False otherwise.
+        """
         return 0 <= x < len(grid) and 0 <= y < len(grid[0]) and grid[x][y] == 0
     
     def __is_free_path(self, x, y, grid):
+        """
+        Check if a position is not an obstacle.
+
+        :param x: X-coordinate.
+        :param y: Y-coordinate.
+        :param grid: The grid.
+        :return: True if the position is free, False otherwise.
+        """
         return grid[x][y] == 0
     
     def __is_destination(self, x, y, dest):
+        """
+        Check if a position is the destination.
+
+        :param x: X-coordinate.
+        :param y: Y-coordinate.
+        :param dest: Destination coordinates.
+        :return: True if the position is the destination, False otherwise.
+        """
         return x == dest[0] and y == dest[1]
     
     def __eu_heuristic(self, x, y, dest):
+        """
+        Calculate the Euclidean heuristic (Manhattan distance) from a position to the destination.
+
+        :param x: X-coordinate.
+        :param y: Y-coordinate.
+        :param dest: Destination coordinates.
+        :return: The heuristic value.
+        """
         return abs(x - dest[0]) + abs(y - dest[1])
 
     def __trace_path(self, dest_node):
+        """
+        Trace back the path from the destination node to the source node.
+
+        :param dest_node: The destination node.
+        :return: The traced path as a list of coordinates.
+        """
         path = []
         current = dest_node
         while current.parent:
@@ -69,26 +144,40 @@ class ASTAR:
         return path[::-1]
 
     def search_unw_grid(self, grid, src, dest, tree_mode=False, heuristic="eu"):
+        """
+        Perform A* search on an unweighted grid.
+
+        :param grid: The grid (2D list of integers).
+        :param src: Source coordinates (tuple).
+        :param dest: Destination coordinates (tuple).
+        :param tree_mode: If True, don't use visited set (for tree structures).
+        :param heuristic: The heuristic function to use.
+        :return: A dictionary with the search results.
+        """
         self.__reset()
 
+        # Check if the source and destination are valid
         if not self.__is_valid(src[0], src[1], grid) or not self.__is_valid(dest[0], dest[1], grid):
             print("Invalid source or destination")
             return None
         
+        # Check if the source is the destination
         if self.__is_destination(src[0], src[1], dest):
             print("Source is the destination")
             return None
         
+        # Initialize nodes
         self.__node_details = [[ASTAR.Node() for _ in range(len(grid[0]))] for _ in range(len(grid))]
         if not tree_mode:
             self.__visited = [[False for _ in range(len(grid[0]))] for _ in range(len(grid))]
 
-        srcNode = self.__node_details[src[0]][src[1]]
-        srcNode.set_xy(*src)
-        srcNode.set_params(0, self.__heuristic_func[heuristic](src[0], src[1], dest))
-        srcNode.set_parent(None)
+        # Setup source node
+        src_node = self.__node_details[src[0]][src[1]]
+        src_node.set_xy(*src)
+        src_node.set_params(0, self.__heuristic_func[heuristic](src[0], src[1], dest))
+        src_node.set_parent(None)
 
-        heapq.heappush(self.__frontier, srcNode)
+        heapq.heappush(self.__frontier, src_node)
         found_dest = False
 
         while self.__frontier:
@@ -120,15 +209,23 @@ class ASTAR:
         return {
             "status": "success" if found_dest else "failure",
             "grid": grid,
-            "srouce": src,
+            "source": src,
             "destination": dest,
             "path": self.__trace_path(self.__node_details[dest[0]][dest[1]]) if found_dest else None,
             "node-visited": self.__visited if not tree_mode else None,
-            "node-hueristic": [[node.heuristic for node in row] for row in self.__node_details],
+            "node-heuristic": [[node.heuristic for node in row] for row in self.__node_details],
             "node-g-value": [[node.w if node.w != float('inf') else "∞" for node in row] for row in self.__node_details]
         }
 
     def get_random_test_grid_case(self, max_x=10, max_y=10, prob=0.3):
+        """
+        Generate a random test case for the grid.
+
+        :param max_x: Maximum number of rows.
+        :param max_y: Maximum number of columns.
+        :param prob: Probability of a cell being an obstacle.
+        :return: A tuple containing the grid, source, and destination coordinates.
+        """
         grid = [[0 for _ in range(max_y)] for _ in range(max_x)]
         src = [0, 0]
         dest = [0, 0]
@@ -143,7 +240,6 @@ class ASTAR:
                         dest = [i, j]
 
         return (grid, src, dest)
-
 
 
 if __name__ == "__main__":
