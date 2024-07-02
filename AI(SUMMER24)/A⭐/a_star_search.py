@@ -158,6 +158,12 @@ class ASTAR:
         return path[::-1]
 
     def __simulate(self, grid, current, dest):
+        """
+        Simulate the search process by printing the grid with the current state.
+        :param grid: The grid.
+        :param current: The current node.
+        :param dest: The destination coordinates.
+        """
         grid_mask = [['⬛' if value == 1 else "⬜" for value in row] for row in grid]
 
         for row in self.__node_details:
