@@ -1,3 +1,4 @@
+import os
 import math
 import heapq
 import pprint
@@ -58,7 +59,7 @@ class ASTAR:
             :return: True if this node's f-value is less than the other's, False otherwise.
             """
             return self.f < other.f
-        
+
     def __init__(self):
         """
         Initialize the A* solver with empty structures.
@@ -156,7 +157,23 @@ class ASTAR:
         path.append((current.x, current.y))
         return path[::-1]
 
-    def search_unw_grid(self, grid, src, dest, tree_mode=False, heuristic="euclidean"):
+    def __simulate(self, grid, current, adj_node):
+        grid_mask = [['#' if value == 1 else "-" for value in row] for row in grid]
+
+        for row in self.__node_details:
+            for node in row:
+                if node.w != float('inf'):
+                    grid_mask[node.x][node.y] = str(int(node.f))
+
+        grid_mask[current.x][current.y] = "*"
+        
+        for row in grid_mask:
+            print(*row)
+
+        input("Press Enter to continue...")
+        os.system("cls" if os.name == "nt" else "clear")
+
+    def search_unw_grid(self, grid, src, dest, tree_mode=False, heuristic="euclidean", simulation=False):
         """
         Perform A* search on an unweighted grid.
 
@@ -219,6 +236,9 @@ class ASTAR:
                         self.__node_details[x][y].set_parent(current)
                         heapq.heappush(self.__frontier, self.__node_details[x][y])
 
+                    if simulation:
+                        self.__simulate(grid, current, self.__node_details[x][y])
+
         return {
             "status": "success" if found_dest else "failure",
             "grid": grid,
@@ -275,5 +295,6 @@ if __name__ == "__main__":
         src = (0, 0)
         dest = (2, 4)
 
-    solve = solver.search_unw_grid(grid, src, dest)
+    solve = solver.search_unw_grid(grid, src, dest, simulation=True)
+
     pp.pprint(solve)
