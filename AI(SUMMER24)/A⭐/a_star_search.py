@@ -157,15 +157,16 @@ class ASTAR:
         path.append((current.x, current.y))
         return path[::-1]
 
-    def __simulate(self, grid, current, adj_node):
-        grid_mask = [['#' if value == 1 else "-" for value in row] for row in grid]
+    def __simulate(self, grid, current, dest):
+        grid_mask = [['⬛' if value == 1 else "⬜" for value in row] for row in grid]
 
         for row in self.__node_details:
             for node in row:
                 if node.w != float('inf'):
-                    grid_mask[node.x][node.y] = str(int(node.f))
+                    grid_mask[node.x][node.y] = f"{node.f:02d}"
 
-        grid_mask[current.x][current.y] = "*"
+        grid_mask[dest[0]][dest[1]] = "⭐"
+        grid_mask[current.x][current.y] = "🤖"
         
         for row in grid_mask:
             print(*row)
@@ -237,7 +238,7 @@ class ASTAR:
                         heapq.heappush(self.__frontier, self.__node_details[x][y])
 
                     if simulation:
-                        self.__simulate(grid, current, self.__node_details[x][y])
+                        self.__simulate(grid, current, dest)
 
         return {
             "status": "success" if found_dest else "failure",
@@ -267,9 +268,9 @@ class ASTAR:
                 if random.random() < prob:
                     grid[i][j] = 1
                 else:
-                    if random.random() * 0.1 < prob:
+                    if random.random() * random.random() < prob * random.choice([0.1, 0.2, 0.3, 0.4, 0.5]):
                         src = [i, j]
-                    elif random.random() * 0.1 < prob:
+                    if random.random() * random.choice([0.1, 0.2, 0.3, 0.4, 0.5]) < prob * random.random():
                         dest = [i, j]
 
         return (grid, src, dest)
@@ -282,7 +283,7 @@ if __name__ == "__main__":
     random_test = True
 
     if random_test:
-        grid, src, dest = solver.get_random_test_grid_case(5, 5, 0.3)
+        grid, src, dest = solver.get_random_test_grid_case(random.choice(range(25)), random.choice(range(25)), 0.33)
     else:
         grid = (
             (0, 0, 0, 0, 0),
@@ -295,6 +296,6 @@ if __name__ == "__main__":
         src = (0, 0)
         dest = (2, 4)
 
-    solve = solver.search_unw_grid(grid, src, dest, simulation=True)
+    solve = solver.search_unw_grid(grid, src, dest, heuristic="manhattan", simulation=True)
 
     pp.pprint(solve)
