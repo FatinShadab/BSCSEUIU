@@ -50,9 +50,9 @@ class GeneticAlgorithm:
                     self.__tune_random()
                     selectionProb = random.random()
                     
-                    if selectionProb < 0.33:
+                    if selectionProb < 0.45:
                         newChromosom.append(gC1)
-                    elif selectionProb < 0.69:
+                    elif selectionProb < 0.89:
                         newChromosom.append(gC2)
                     else:
                         chromosomSet = chromosom1 + chromosom2
