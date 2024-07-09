@@ -48,6 +48,9 @@ class ASTAR:
     def __euclidean_heuristic(self, node, goal):
         return math.sqrt((node.x - goal.x)**2 + (node.y - goal.y)**2)
     
+    def __manhattan_heuristic(self, node, goal):
+        return abs(node.x - goal.x) + abs(node.y - goal.y)
+    
     def __build_path(self, goal):
         path = []
         while goal:
@@ -62,7 +65,7 @@ class ASTAR:
             neighborNode = graph.nodes[neighbor]
             
             newCost = node.actualCost + edgeWeight
-            newHeuristic = self.__euclidean_heuristic(neighborNode, goal)
+            newHeuristic = self.__manhattan_heuristic(neighborNode, goal)
 
             if neighborNode.estimatedCost > newCost + newHeuristic:
                 neighborNode.actualCost = newCost
@@ -77,7 +80,7 @@ class ASTAR:
         if treeMode: self.treeMode = treeMode
 
         start.actualCost = 0
-        start.heuristicCost = self.__euclidean_heuristic(start, goal)
+        start.heuristicCost = self.__manhattan_heuristic(start, goal)
         start.estimate_cost()
         start.set_parent(None)
 
@@ -89,9 +92,8 @@ class ASTAR:
                 print(f"Exploring: {current.label, current.estimatedCost}")
             if not self.treeMode: self.__explored.add(current.label)
             
-            if not self.treeMode:
-                if current.label == goal.label:
-                    return self.__build_path(current)
+            if current.label == goal.label:
+                return self.__build_path(current)
                 
             if self.debugMode:
                 if current.label == goal.label:
