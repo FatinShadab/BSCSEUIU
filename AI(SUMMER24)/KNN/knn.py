@@ -86,7 +86,7 @@ class KNN:
         """
         return sum(abs(x1_i - x2_i) for x1_i, x2_i in zip(x1, x2))
 
-    def __predict_atom(self: KNN, x: type.List[float]) -> int:
+    def predict_atom(self: KNN, x: type.List[float]) -> int:
         """
         Predicts the label for a single test sample based on the k nearest neighbors.
 
@@ -129,6 +129,25 @@ class KNN:
         self.x_train = x
         self.y_train = y
     
+    def validate(self: KNN, x: type.List[type.List[float]], y: type.List[int]) -> float:
+        """
+        Validates the model using the provided validation data.
+
+        Parameters:
+        ----------
+        x : List[List[float]]
+            The validation data features (each sample is a list of features).
+        y : List[int]
+            The validation data labels.
+
+        Returns:
+        -------
+        float
+            The accuracy of the model on the validation data.
+        """
+        y_pred: type.List[int] = self.predict(x)
+        return (sum(y_i == y_pred_i for y_i, y_pred_i in zip(y, y_pred)) / len(y)) * 100
+
     def predict(self: KNN, X: type.List[type.List[float]]) -> type.List[int]:
         """
         Predicts the labels for the provided test data.
@@ -143,4 +162,4 @@ class KNN:
         List[int]
             The predicted labels for the test data.
         """
-        return [self.__predict_atom(x) for x in X]
+        return [self.predict_atom(x) for x in X]
