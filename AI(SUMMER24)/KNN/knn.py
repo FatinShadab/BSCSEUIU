@@ -1,5 +1,5 @@
 from __future__ import annotations
-import typing as type
+import typing as t
 from collections import Counter
 
 class KNN:
@@ -44,13 +44,13 @@ class KNN:
             The distance metric to use (0 for Euclidean, 1 for Manhattan).
         """
         self.k: int = k
-        self.x_train: type.List[type.List[float]] = []
-        self.y_train: type.List[int] = []
-        self.distance: type.Callable[[type.List[float], type.List[float]], float] = (
+        self.x_train: t.List[t.List[float]] = []
+        self.y_train: t.List[int] = []
+        self.distance_matrix: t.Callable[[t.List[float], t.List[float]], float] = (
             self.__euclidean_distance if mode == 0 else self.__manhattan_distance
         )
 
-    def __euclidean_distance(self: KNN, x1: type.List[float], x2: type.List[float]) -> float:
+    def __euclidean_distance(self: KNN, x1: t.List[float], x2: t.List[float]) -> float:
         """
         Computes the Euclidean distance between two points.
 
@@ -68,7 +68,7 @@ class KNN:
         """
         return sum((x1_i - x2_i) ** 2 for x1_i, x2_i in zip(x1, x2)) ** 0.5
 
-    def __manhattan_distance(self: KNN, x1: type.List[float], x2: type.List[float]) -> float:
+    def __manhattan_distance(self: KNN, x1: t.List[float], x2: t.List[float]) -> float:
         """
         Computes the Manhattan distance between two points.
 
@@ -86,7 +86,10 @@ class KNN:
         """
         return sum(abs(x1_i - x2_i) for x1_i, x2_i in zip(x1, x2))
 
-    def predict_atom(self: KNN, x: type.List[float]) -> int:
+    def tune_model(self: KNN, k: int) -> None:
+        self.k = k
+
+    def predict_atom(self: KNN, x: t.List[float]) -> int:
         """
         Predicts the label for a single test sample based on the k nearest neighbors.
 
@@ -103,19 +106,23 @@ class KNN:
         if len(self.x_train) != len(self.y_train):
             raise ValueError("The length of x_train and y_train must be equal.")
         
-        # Calculate distances between the test sample and all training samples
-        distances: type.List[float] = [self.distance(x, x_train) for x_train in self.x_train]
+        distances: t.List[t.Tuple[float]] = []
 
-        # Get the indices of the k nearest neighbors
-        k_indices: type.List[int] = sorted(range(len(distances)), key=lambda i: distances[i])[:self.k]
+        for x_train in self.x_train:
+            distance = self.distance_matrix(x, x_train)
+            distances.append((x_train, distance))
 
-        # Get the labels of the k nearest neighbors
-        k_near_labels: type.List[int] = [self.y_train[i] for i in k_indices]
+        distances.sort(key=lambda x: x[1])
 
-        # Return the most common label among the nearest neighbors
-        return Counter(k_near_labels).most_common(1)[0][0]
+        k_nearest_neighbors = distances[:self.k]
 
-    def fit(self: KNN, x: type.List[type.List[float]], y: type.List[int]) -> None:
+        prediction = Counter(
+            [self.y_train[self.x_train.index(x[0])] for x in k_nearest_neighbors]
+        ).most_common(1)[0][0]
+
+        return prediction
+
+    def fit(self: KNN, x: t.List[t.List[float]], y: t.List[int]) -> None:
         """
         Trains the KNN model using the provided training data.
 
@@ -129,26 +136,17 @@ class KNN:
         self.x_train = x
         self.y_train = y
     
-    def validate(self: KNN, x: type.List[type.List[float]], y: type.List[int]) -> float:
-        """
-        Validates the model using the provided validation data.
+    def validate_accuracy(self: KNN, x: t.Tuple[t.List[float]], y: t.Tuple[int]) -> float:
+        valid_count = 0
+        
+        for features, label in zip(x, y):
+            prediction = self.predict_atom(features)
+            if prediction == label:
+                valid_count += 1
 
-        Parameters:
-        ----------
-        x : List[List[float]]
-            The validation data features (each sample is a list of features).
-        y : List[int]
-            The validation data labels.
+        return (valid_count / len(y)) * 100 
 
-        Returns:
-        -------
-        float
-            The accuracy of the model on the validation data.
-        """
-        y_pred: type.List[int] = self.predict(x)
-        return (sum(y_i == y_pred_i for y_i, y_pred_i in zip(y, y_pred)) / len(y)) * 100
-
-    def predict(self: KNN, X: type.List[type.List[float]]) -> type.List[int]:
+    def predict(self: KNN, X: t.List[t.List[float]]) -> t.List[int]:
         """
         Predicts the labels for the provided test data.
 
@@ -163,3 +161,23 @@ class KNN:
             The predicted labels for the test data.
         """
         return [self.predict_atom(x) for x in X]
+    
+    def model_accuracy(self: KNN, X: t.List[t.List[float]], y: t.List[int]) -> float:
+        """
+        Calculates the accuracy of the model on the provided test data.
+
+        Parameters:
+        ----------
+        X : List[List[float]]
+            The test data features (each sample is a list of features).
+        y : List[int]
+            The test data labels.
+
+        Returns:
+        -------
+        float
+            The accuracy of the model on the test data.
+        """
+        predictions = self.predict(X)
+        correct_predictions = sum([1 for p, y_true in zip(predictions, y) if p == y_true])
+        return (correct_predictions / len(y)) * 100
