@@ -16,8 +16,11 @@ if __name__ == "__main__":
     # Generate centroids
     Kmean.tune(epochs=10, show=True, pause=False)
 
-    for cluster in Kmean.clusters_archive:
-        print(cluster)
+    for idx, clusters in enumerate(Kmean.clusters_archive):
+        print(f"Epoch Cluster idx: {idx}")
+        for k in clusters.keys():
+            print(f"\tK: {k}")
+            print(f"\t\tx: {clusters[k]['center'][0]}, y: {clusters[k]['center'][1]}") 
 
     cluster_index = int(input("Enter cluster index: "))
 
